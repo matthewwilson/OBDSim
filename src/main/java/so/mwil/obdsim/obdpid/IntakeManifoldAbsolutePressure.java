@@ -10,10 +10,12 @@ public class IntakeManifoldAbsolutePressure implements IOBDPID {
     private int kpa = 96;
     private int offBoost = 0;
 
+    @Override
     public String getCode() {
         return "0B";
     }
 
+    @Override
     public String generateResponse(String mode) {
 
         if(offBoost > 0) {

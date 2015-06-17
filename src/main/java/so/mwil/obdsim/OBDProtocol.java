@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class OBDProtocol {
 
-    private List<IOBDPID> supportedPIDS;
+    private final List<IOBDPID> supportedPIDS;
 
     public OBDProtocol() {
         supportedPIDS = new ArrayList<IOBDPID>();
