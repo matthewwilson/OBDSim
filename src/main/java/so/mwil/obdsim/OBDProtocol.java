@@ -4,19 +4,20 @@ import so.mwil.obdsim.obdpid.IOBDPID;
 import so.mwil.obdsim.obdpid.IntakeManifoldAbsolutePressure;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by matthew on 30/10/14.
  */
 public class OBDProtocol {
 
-    private ArrayList<IOBDPID> supportedPIDS;
+    private final List<IOBDPID> supportedPIDS;
 
-    public OBDProtocol()
-    {
-        supportedPIDS = new ArrayList<IOBDPID>() {{
-            add(new IntakeManifoldAbsolutePressure());
-        }};
+    public OBDProtocol() {
+        supportedPIDS = new ArrayList<IOBDPID>();
+
+        // Add some PIDs
+        supportedPIDS.add(new IntakeManifoldAbsolutePressure());
     }
 
     public String processInput(String inputLine) {
@@ -27,15 +28,12 @@ public class OBDProtocol {
             String mode = getModeFromRequest(inputLine);
             String code = getCodeFromRequest(inputLine);
 
-            for(IOBDPID pid : supportedPIDS)
-            {
-                if(pid.getCode().equals(code))
-                {
+            for(IOBDPID pid : supportedPIDS) {
+                if(pid.getCode().equals(code)) {
                     //simulateDelay(500);
                     return pid.generateResponse(mode);
                 }
             }
-
         }
 
         return null;
@@ -50,12 +48,10 @@ public class OBDProtocol {
     }
 
     private String getModeFromRequest(String inputLine) {
-        return inputLine.substring(0,2);
+        return inputLine.substring(0, 2);
     }
 
     private String getCodeFromRequest(String inputLine) {
-        return inputLine.substring(2,4);
+        return inputLine.substring(2, 4);
     }
-
-
 }

@@ -18,20 +18,18 @@ public class IntakeManifoldAbsolutePressure implements IOBDPID {
     @Override
     public String generateResponse(String mode) {
 
-        if(offBoost > 0)
-        {
+        if(offBoost > 0) {
             offBoost--;
+
             return ResponseUtils.buildOBDResponse(mode, getCode(), Integer.toHexString(96));
-        }
-        else
-        {
+        } else {
             kpa++;
 
-            if(kpa >= 337)
-            {
+            if(kpa >= 337) {
                 offBoost = 200;
                 kpa = 96;
             }
+
             return ResponseUtils.buildOBDResponse(mode, getCode(), Integer.toHexString(kpa));
         }
     }

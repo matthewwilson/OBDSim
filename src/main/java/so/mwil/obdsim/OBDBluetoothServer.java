@@ -19,13 +19,13 @@ import java.io.PrintWriter;
 public class OBDBluetoothServer {
 
     public void start() {
-        // retrieve the local Bluetooth device object
+        // Retrieve the local Bluetooth device object
         LocalDevice local = null;
 
         StreamConnectionNotifier notifier;
         StreamConnection connection = null;
 
-        // setup the server to listen for connection
+        // Setup the server to listen for connection
         try {
             local = LocalDevice.getLocalDevice();
             local.setDiscoverable(DiscoveryAgent.GIAC);
@@ -37,7 +37,8 @@ public class OBDBluetoothServer {
             e.printStackTrace();
             return;
         }
-        // waiting for connection
+
+        // Waiting for connection
         while(true) {
             try {
                 System.out.println("waiting for connection...");
@@ -52,8 +53,7 @@ public class OBDBluetoothServer {
         }
     }
 
-    public void processConnection(StreamConnection connection)
-    {
+    public void processConnection(StreamConnection connection) {
         try {
             PrintWriter out = new PrintWriter(connection.openOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.openInputStream()));

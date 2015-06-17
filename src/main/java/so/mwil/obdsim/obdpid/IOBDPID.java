@@ -5,7 +5,8 @@ package so.mwil.obdsim.obdpid;
  */
 public interface IOBDPID {
 
-    public String getCode();
-    public String generateResponse(String mode);
+    String getCode();
+
+    String generateResponse(String mode);
 
 }
