@@ -3,16 +3,27 @@ package so.mwil.obdsim.obdpid;
 import so.mwil.obdsim.utilities.ResponseUtils;
 
 /**
- * Created by matthew on 01/11/14.
+ *  <h1>Mode 01 - Intake manifold absolute pressure</h1>
+ *  <p>Min Value: 0</p>
+ *  <p>Max Value: 255</p>
+ *  <p>Units: kPa (absolute)</p>
+ *
+ *  Created by matthew on 01/11/14.
  */
 public class IntakeManifoldAbsolutePressure implements IOBDPID {
 
-    private int kpa = 96;
+    // Set standard values
+    private final String unit = "kPa";
+    private final String code = "0B";
+    private final String minValue = "0";
+    private final String maxValue = "255";
+
+    private int value = 96;
     private int offBoost = 0;
 
     @Override
     public String getCode() {
-        return "0B";
+        return code;
     }
 
     @Override
@@ -23,14 +34,34 @@ public class IntakeManifoldAbsolutePressure implements IOBDPID {
 
             return ResponseUtils.buildOBDResponse(mode, getCode(), Integer.toHexString(96));
         } else {
-            kpa++;
+            value++;
 
-            if(kpa >= 337) {
+            if(value >= 337) {
                 offBoost = 200;
-                kpa = 96;
+                value = 96;
             }
 
-            return ResponseUtils.buildOBDResponse(mode, getCode(), Integer.toHexString(kpa));
+            return ResponseUtils.buildOBDResponse(mode, getCode(), Integer.toHexString(value));
         }
+    }
+
+    @Override
+    public String getUnit() {
+        return unit;
+    }
+
+    @Override
+    public String getMinValue() {
+        return minValue;
+    }
+
+    @Override
+    public String getMaxValue() {
+        return maxValue;
+    }
+
+    @Override
+    public String toString() {
+        return "Intake manifold absolute pressure";
     }
 }

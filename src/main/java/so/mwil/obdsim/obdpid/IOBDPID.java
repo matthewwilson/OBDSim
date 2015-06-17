@@ -9,4 +9,9 @@ public interface IOBDPID {
 
     String generateResponse(String mode);
 
+    String getUnit();
+
+    String getMinValue();
+
+    String getMaxValue();
 }

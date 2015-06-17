@@ -18,7 +18,7 @@ public class ResponseUtils {
     }
 
     private static String convertRequestModeToResponseMode(String requestMode) {
-        return requestMode.replace("0","4");
+        return requestMode.replace("0", "4");
     }
 
 }
