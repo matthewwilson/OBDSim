@@ -15,14 +15,12 @@ import java.net.Socket;
  */
 public class OBDServer {
 
-    public void start(int portNumber)
-    {
-        try
-        {
+    public void start(int portNumber) {
+        try {
             ServerSocket serverSocket = new ServerSocket(portNumber);
 
-            InetAddress IP= InetAddress.getLocalHost();
-            System.out.println("Simulator is running on : "+IP.getHostAddress()+" port number : "+portNumber);
+            InetAddress IP = InetAddress.getLocalHost();
+            System.out.println("Simulator is running on : " + IP.getHostAddress() + " port number : " + portNumber);
 
             Socket clientSocket = serverSocket.accept();
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -47,9 +45,7 @@ public class OBDServer {
             clientSocket.close();
             serverSocket.close();
 
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
