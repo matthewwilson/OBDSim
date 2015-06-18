@@ -6,9 +6,9 @@ package so.mwil.obdsim;
 public class Main {
 
     public static boolean USE_BLUETOOTH = false;
+    public static int SERVER_PORT = 35000;
 
     public static void main(String[] args) {
-
         int restartCount = 10;
 
         while(restartCount > 0) {
@@ -19,7 +19,7 @@ public class Main {
                 server.start();
             } else {
                 OBDServer server = new OBDServer();
-                server.start(35000);
+                server.start(SERVER_PORT);
             }
         }
     }
