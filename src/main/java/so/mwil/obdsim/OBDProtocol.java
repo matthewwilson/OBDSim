@@ -1,5 +1,6 @@
 package so.mwil.obdsim;
 
+import so.mwil.obdsim.obdpid.EngineRpm;
 import so.mwil.obdsim.obdpid.IOBDPID;
 import so.mwil.obdsim.obdpid.IntakeManifoldAbsolutePressure;
 
@@ -18,15 +19,16 @@ public class OBDProtocol {
 
         // Add some PIDs
         supportedPIDS.add(new IntakeManifoldAbsolutePressure());
+        supportedPIDS.add(new EngineRpm());
     }
 
     public String processInput(String inputLine) {
 
         if(inputLine != null && inputLine.length() == 4) {
-            System.out.println("Received Command: " + inputLine);
+            final String mode = getModeFromRequest(inputLine);
+            final String code = getCodeFromRequest(inputLine);
 
-            String mode = getModeFromRequest(inputLine);
-            String code = getCodeFromRequest(inputLine);
+            System.out.println("Received Command: " + inputLine);
 
             for(IOBDPID pid : supportedPIDS) {
                 if(pid.getCode().equals(code)) {

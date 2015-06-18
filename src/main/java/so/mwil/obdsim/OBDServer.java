@@ -39,6 +39,8 @@ public class OBDServer {
                 if(outputLine != null) {
                     out.println(outputLine);
                     out.println(ResponseUtils.buildOBDEndResponse());
+                } else {
+                    out.println("No response for command");
                 }
             }
 
