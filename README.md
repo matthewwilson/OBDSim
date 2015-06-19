@@ -16,5 +16,6 @@ This app will simulate a WiFi OBD dongle, allowing development of companion mobi
 Currently the simulator supports these OBD PIDS:
 
 * 0B - Intake Manifold Absolute Pressure
+* 0C - Engine RPM
 
 full list of pids can be viewed on wikipedia - http://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01
